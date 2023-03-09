@@ -8,7 +8,11 @@ const MainStack = createNativeStackNavigator();
 const MainNavigator = () => (
   <NavigationContainer>
     <MainStack.Navigator>
-      <MainStack.Screen component={Home} name="Home" />
+      <MainStack.Screen
+        component={Home}
+        name="Home"
+        options={{headerShown: false}}
+      />
     </MainStack.Navigator>
   </NavigationContainer>
 );

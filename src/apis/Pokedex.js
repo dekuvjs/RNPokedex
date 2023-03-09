@@ -1,11 +1,21 @@
 import axios from 'axios';
-import {getRegionsFromFirebase} from './FirebaseDatabase';
+import {
+  getRegionsFromFirebase,
+  storeRegionsToFirebase,
+} from './FirebaseDatabase';
 
-export const getRegions = async () => {
+export const getRegions = async (onSuccess, onError) => {
   let regions = [];
-
-  if (regions?.length <= 0) {
-    regions = await axios.get('https://pokeapi.co/api/v2/pokedex/4/');
-    console.log(regions);
+  regions = await getRegionsFromFirebase();
+  if (regions?.length <= 0 || !regions) {
+    axios
+      .get('https://pokeapi.co/api/v2/region/')
+      .then(res => {
+        storeRegionsToFirebase(res.data.results);
+        onSuccess(res.data.results);
+      })
+      .catch(onError);
+  } else {
+    onSuccess(regions);
   }
 };
