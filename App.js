@@ -7,12 +7,13 @@
 
 import React from 'react';
 import {SafeAreaView} from 'react-native';
+import LoginNavigator from './src/navigators/LoginNavigator';
 import MainNavigator from './src/navigators/MainNavigator';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <MainNavigator />
+    <SafeAreaView style={{flex: 1}}>
+      <LoginNavigator />
     </SafeAreaView>
   );
 };

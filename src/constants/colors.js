@@ -1,4 +1,4 @@
 export default {
-  mainColor: '#D20000',
+  mainColor: '#df4c4c',
   white: '#FFFFFF',
 };
