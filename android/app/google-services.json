@@ -8,22 +8,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:181436431271:android:1c2638f488769348d39482",
+        "mobilesdk_app_id": "1:181436431271:android:9d883a75375f7b25d39482",
         "android_client_info": {
           "package_name": "com.rnpokedex"
         }
       },
       "oauth_client": [
         {
-          "client_id": "181436431271-bbp53ii4oh8mi49p52bcjg4supdii6jp.apps.googleusercontent.com",
+          "client_id": "181436431271-652cbcav6b0vnfo7l8mhufssp6nv1cdc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.rnpokedex",
-            "certificate_hash": "6a4f4026113dd9f74f12f06fd330a98135d6481c"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
-          "client_id": "181436431271-i7bmrcqc5iv3bb0uh39fdpn87rsgnbv2.apps.googleusercontent.com",
+          "client_id": "181436431271-u8coe5smdubgp32n42kj5v0u7iurs8ej.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

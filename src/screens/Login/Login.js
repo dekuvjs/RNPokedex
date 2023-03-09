@@ -1,45 +1,30 @@
-import React, {useEffect} from 'react';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {ImageBackground, Text} from 'react-native';
 
 import {View} from 'react-native';
-import Input from '../../components/Input/Input';
+import {onGoogleButtonPress} from '../../apis/FirebaseAuth';
+import Button from '../../components/Button/Button';
 import styles from './styles';
-
-import auth from '@react-native-firebase/auth';
-
-async function onGoogleButtonPress() {
-  // Check if your device supports Google Play
-  await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-  // Get the users ID token
-  const {idToken} = await GoogleSignin.signIn();
-
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(googleCredential);
-}
 
 const Login = () => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId:
-        '181436431271-bbp53ii4oh8mi49p52bcjg4supdii6jp.apps.googleusercontent.com',
+        '181436431271-u8coe5smdubgp32n42kj5v0u7iurs8ej.apps.googleusercontent.com',
     });
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Button
-        title="Google Sign-In"
-        onPress={() =>
-          onGoogleButtonPress().then(() =>
-            console.log('Signed in with Google!'),
-          )
-        }
-      />
-    </View>
+    <ImageBackground
+      style={styles.container}
+      resizeMode="cover"
+      source={require('../../../assets/images/LoginBackground.jpg')}>
+      <View style={styles.content}>
+        <Text style={styles.text}>Welcome to RN Pokedex</Text>
+        <Button text="Sign-in with google" onPress={onGoogleButtonPress} />
+      </View>
+    </ImageBackground>
   );
 };
 
