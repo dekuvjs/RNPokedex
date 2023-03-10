@@ -11,7 +11,7 @@ const TeamItem = ({name, amount, onEdit, onDelete}) => {
       <Text style={styles.text}>{'name'}</Text>
       <Text style={styles.text}>{'amoun'}</Text>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={onDelete}>
+        <TouchableOpacity onPress={onDelete} style={styles.button}>
           <Icon name="pencil-square-o" size={20} color={colors.white} />
         </TouchableOpacity>
         <TouchableOpacity onPress={onEdit} style={styles.button}>

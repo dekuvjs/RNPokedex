@@ -3,7 +3,7 @@ import {FlatList, View} from 'react-native';
 import {getRegions} from '../../apis/Pokedex';
 import Header from '../../components/Header/Header';
 import RegionButton from '../../components/RegionButton/RegionButton';
-import {TEAMS} from '../../constants/screens';
+import {TEAMSSCREEN} from '../../constants/screens';
 import withPokemonBackground from '../../HOC/withPokemonBackground';
 import styles from './styles';
 
@@ -14,7 +14,7 @@ const Home = ({navigation, route}) => {
   }, []);
 
   const navigateToTeams = item => {
-    navigation.navigate(TEAMS, item);
+    navigation.navigate(TEAMSSCREEN, item);
   };
   return (
     <View style={styles.container}>

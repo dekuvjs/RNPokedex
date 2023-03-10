@@ -1,5 +1,5 @@
 import database from '@react-native-firebase/database';
-import {REGIONS} from '../constants/api';
+import {REGIONS, TEAMS} from '../constants/api';
 
 const pokedex = database();
 
@@ -10,4 +10,14 @@ export const getRegionsFromFirebase = async () => {
 
 export const storeRegionsToFirebase = regions => {
   pokedex.ref(REGIONS).set(regions);
+};
+
+export const getTeams = (region, onSuccess, onError) => {
+  pokedex
+    .ref(`${TEAMS}/${region}`)
+    .once('value')
+    .then(snapshot => {
+      onSuccess(snapshot.val());
+    })
+    .catch(onError);
 };

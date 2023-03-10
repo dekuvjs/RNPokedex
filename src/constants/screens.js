@@ -1,2 +1,2 @@
-export const HOME = 'HOME';
-export const TEAMS = 'TEAMS';
+export const HOMESCREEN = 'HOMESCREEN';
+export const TEAMSSCREEN = 'TEAMSSCREEN';

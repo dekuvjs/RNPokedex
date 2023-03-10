@@ -19,6 +19,7 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   button: {
     marginRight: 10,

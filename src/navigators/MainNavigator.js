@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {HOME, TEAMS} from '../constants/screens';
+import {HOMESCREEN, TEAMSSCREEN} from '../constants/screens';
 import Home from '../screens/Home/Home';
 import Teams from '../screens/Teams/Teams';
 
@@ -12,12 +12,12 @@ const MainNavigator = () => (
     <MainStack.Navigator>
       <MainStack.Screen
         component={Home}
-        name={HOME}
+        name={HOMESCREEN}
         options={{headerShown: false}}
       />
       <MainStack.Screen
         component={Teams}
-        name={TEAMS}
+        name={TEAMSSCREEN}
         options={{headerShown: false}}
       />
     </MainStack.Navigator>
