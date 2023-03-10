@@ -1,16 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
+import auth from '@react-native-firebase/auth';
+
 import {getTeams} from '../../apis/FirebaseDatabase';
 import Header from '../../components/Header/Header';
 import TeamItem from '../../components/TeamItem/TeamItem';
 import withPokemonBackground from '../../HOC/withPokemonBackground';
 import styles from './styles';
+import AddMoreTeamsButton from '../../components/AddMoreTeamsButton/AddMoreTeamsButton';
+import {CREATETEAMSSCREEN} from '../../constants/screens';
 
 const Teams = ({navigation, route}) => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    getTeams(route.params.name, setTeams);
+    const userID = auth().currentUser.uid;
+    getTeams(userID, route.params.name, setTeams);
   }, [route.params.name]);
 
   return (
@@ -23,6 +28,10 @@ const Teams = ({navigation, route}) => {
         contentContainerStyle={styles.listContainer}
         data={teams}
         renderItem={({item, index}) => <TeamItem item={item} key={index} />}
+      />
+
+      <AddMoreTeamsButton
+        onPress={() => navigation.navigate(CREATETEAMSSCREEN)}
       />
     </View>
   );

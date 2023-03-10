@@ -12,9 +12,9 @@ export const storeRegionsToFirebase = regions => {
   pokedex.ref(REGIONS).set(regions);
 };
 
-export const getTeams = (region, onSuccess, onError) => {
+export const getTeams = (userID, region, onSuccess, onError) => {
   pokedex
-    .ref(`${TEAMS}/${region}`)
+    .ref(`${TEAMS}/${region}/${userID}`)
     .once('value')
     .then(snapshot => {
       onSuccess(snapshot.val());
