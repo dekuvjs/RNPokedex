@@ -4,9 +4,12 @@ import colors from '../../constants/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 12,
-    paddingRight: 12,
-    justifyContent: 'center',
+    backgroundColor: colors.darkTransparent,
+  },
+  listContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 12,
   },
 
   text: {
@@ -17,10 +20,5 @@ export default StyleSheet.create({
     fontSize: 20,
   },
 
-  content: {
-    height: 180,
-    padding: 12,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRadius: 6,
-  },
+  columnContent: {justifyContent: 'space-between'},
 });

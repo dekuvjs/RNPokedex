@@ -7,6 +7,7 @@ export default StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 
   text: {

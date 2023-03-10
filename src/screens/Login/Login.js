@@ -1,8 +1,7 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {useEffect} from 'react';
-import {ImageBackground, Text} from 'react-native';
+import {ImageBackground, Text, View} from 'react-native';
 
-import {View} from 'react-native';
 import {onGoogleButtonPress} from '../../apis/FirebaseAuth';
 import Button from '../../components/Button/Button';
 import styles from './styles';
