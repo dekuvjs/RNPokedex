@@ -9,6 +9,7 @@ export default StyleSheet.create({
     borderRadius: 6,
     backgroundColor: colors.white,
     elevation: 3,
+    marginBottom: 10,
   },
   buttonText: {
     color: colors.mainColor,

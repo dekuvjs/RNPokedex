@@ -1,21 +1,14 @@
 import React, {useState} from 'react';
 import {Text, TextInput} from 'react-native';
-import colors from '../../constants/colors';
 import styles from './styles';
 
-const Input = ({placeholder, callback}) => {
-  const [text, setText] = useState('');
-
-  const onChangeText = value => {
-    callback?.sdsd(value);
-    setText(value);
-  };
+const Input = ({placeholder, value, onChangeText}) => {
   return (
     <>
       <Text style={styles.text}>{placeholder}</Text>
       <TextInput
         onChangeText={onChangeText}
-        value={text}
+        value={value}
         style={styles.input}
       />
     </>
