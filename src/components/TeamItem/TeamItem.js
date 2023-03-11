@@ -5,20 +5,21 @@ import colors from '../../constants/colors';
 
 import styles from './styles';
 
-const TeamItem = ({name, amount, onEdit, onDelete}) => {
+const TeamItem = ({name, onEdit, onDelete, onPress}) => {
   return (
-    <View style={styles.Container}>
-      <Text style={styles.text}>{'name'}</Text>
-      <Text style={styles.text}>{'amoun'}</Text>
+    <TouchableOpacity style={styles.Container} onPress={onPress}>
+      <Text style={styles.text}>{name}</Text>
       <View style={styles.buttonContainer}>
+        {!!onEdit && (
+          <TouchableOpacity onPress={onEdit} style={styles.button}>
+            <Icon name="pencil-square-o" size={25} color={colors.mainColor} />
+          </TouchableOpacity>
+        )}
         <TouchableOpacity onPress={onDelete} style={styles.button}>
-          <Icon name="pencil-square-o" size={20} color={colors.white} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onEdit} style={styles.button}>
-          <Icon name="trash-o" size={20} color={colors.white} />
+          <Icon name="trash-o" size={25} color={colors.mainColor} />
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

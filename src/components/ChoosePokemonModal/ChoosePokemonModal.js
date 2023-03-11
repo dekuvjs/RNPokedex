@@ -37,7 +37,7 @@ const ChoosePokemonModal = ({
               key={index + item.pokemon_species.name}
               text={item.pokemon_species.name}
               onPress={() => {
-                addPokemonToTeam(item.pokemon_species.name);
+                addPokemonToTeam(item.pokemon_species);
                 setVisible(false);
                 setText('');
               }}

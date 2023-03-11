@@ -10,13 +10,13 @@ export default StyleSheet.create({
     elevation: 3,
     color: '#000000',
     fontFamily: 'Roboto-Regular',
-    fontSize: 15,
+    fontSize: 16,
     marginBottom: 20,
   },
   text: {
     marginTop: 30,
     color: colors.white,
     fontFamily: 'Roboto-Regular',
-    fontSize: 15,
+    fontSize: 16,
   },
 });

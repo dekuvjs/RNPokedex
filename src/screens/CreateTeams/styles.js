@@ -15,7 +15,7 @@ export default StyleSheet.create({
     color: colors.white,
     fontFamily: 'Roboto-BoldItalic',
     alignSelf: 'center',
-    marginBottom: 50,
+    marginTop: 50,
     fontSize: 20,
   },
 

@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 export default StyleSheet.create({
   Container: {
     height: 50,
-    backgroundColor: colors.mainColor,
+    backgroundColor: colors.white,
     marginBottom: 20,
     borderRadius: 6,
     flexDirection: 'row',
@@ -13,8 +13,8 @@ export default StyleSheet.create({
     padding: 10,
   },
   text: {
-    color: colors.white,
-    fontFamily: 'Roboto-Bold',
+    color: colors.mainColor,
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
   },
   buttonContainer: {

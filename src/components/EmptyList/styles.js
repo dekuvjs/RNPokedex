@@ -21,7 +21,7 @@ export default StyleSheet.create({
   },
   text: {
     fontFamily: 'Roboto-Regular',
-    fontSize: 18,
+    fontSize: 16,
     color: colors.white,
   },
 });
