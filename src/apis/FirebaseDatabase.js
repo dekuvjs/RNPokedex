@@ -47,5 +47,17 @@ export const storeTeamToFirebase = (
 ) => {
   pokedex
     .ref(`${TEAMS}/${region}/${auth().currentUser.uid}/${teamName}`)
-    .set({name: teamName, pokemons});
+    .set({name: teamName, pokemons})
+    .then(() => onSuccess());
+};
+
+export const removeTeamFromFirebase = (
+  region,
+  teamName,
+  onSuccess,
+  onError,
+) => {
+  pokedex
+    .ref(`${TEAMS}/${region}/${auth().currentUser.uid}/${teamName}`)
+    .remove();
 };

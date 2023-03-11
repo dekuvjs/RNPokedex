@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Alert, FlatList, Text, View} from 'react-native';
-import {storeTeamToFirebase} from '../../apis/FirebaseDatabase';
-import {getPokemons} from '../../apis/Pokedex';
+import {
+  removeTeamFromFirebase,
+  storeTeamToFirebase,
+} from '../../apis/FirebaseDatabase';
 import Button from '../../components/Button/Button';
 import ChoosePokemonModal from '../../components/ChoosePokemonModal/ChoosePokemonModal';
 import EmptyList from '../../components/EmptyList/EmptyList';
@@ -13,14 +15,11 @@ import withPokemonBackground from '../../HOC/withPokemonBackground';
 import styles from './styles';
 
 const CreateTeams = ({navigation, route}) => {
-  const [pokemons, setPokemons] = useState([]);
-  const [teamName, setTeamName] = useState('');
-  const [pokemonTeamMembers, setpokemonTeamMembers] = useState([]);
+  const [teamName, setTeamName] = useState(route.params.title);
+  const [pokemonTeamMembers, setpokemonTeamMembers] = useState(
+    route.params.teamMenbers ?? [],
+  );
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    getPokemons(route.params.region, setPokemons);
-  }, [route.params.region]);
 
   const onDeletePokemon = index => {
     const pokemonList = [...pokemonTeamMembers];
@@ -28,13 +27,23 @@ const CreateTeams = ({navigation, route}) => {
     setpokemonTeamMembers(pokemonList);
   };
 
+  const removeTeam = () => {
+    if (!!route.params.title && route.params.title !== teamName) {
+      removeTeamFromFirebase(route.params.region, route.params.title);
+    }
+  };
   const onSave = () => {
     if (pokemonTeamMembers.length < 3) {
       Alert.alert('insufficient amount of pokemons ', INSUFFICIENTPOKEMONS);
     } else if (teamName === '') {
       Alert.alert('Add a team name', 'Please add a name to your team');
     } else {
-      storeTeamToFirebase(route.params.region, pokemonTeamMembers, teamName);
+      storeTeamToFirebase(
+        route.params.region,
+        pokemonTeamMembers,
+        teamName,
+        removeTeam,
+      );
       navigation.goBack();
     }
   };
@@ -42,7 +51,7 @@ const CreateTeams = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <Header
-        text="Teams Creation"
+        text={route.params.title ?? 'Teams Creation'}
         goBack={navigation.goBack}
         onSave={onSave}
       />
@@ -81,7 +90,7 @@ const CreateTeams = ({navigation, route}) => {
       <ChoosePokemonModal
         visible={modalVisible}
         setVisible={setModalVisible}
-        pokemons={pokemons}
+        pokemons={route.params.pokemons}
         addPokemonToTeam={teamMember => {
           setpokemonTeamMembers([...pokemonTeamMembers, teamMember]);
         }}

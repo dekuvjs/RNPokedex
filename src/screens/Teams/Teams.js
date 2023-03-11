@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
-import {getTeams} from '../../apis/FirebaseDatabase';
+import {getTeams, removeTeamFromFirebase} from '../../apis/FirebaseDatabase';
 import Header from '../../components/Header/Header';
 import TeamItem from '../../components/TeamItem/TeamItem';
 import withPokemonBackground from '../../HOC/withPokemonBackground';
@@ -10,13 +10,16 @@ import styles from './styles';
 import AddMoreTeamsButton from '../../components/AddMoreTeamsButton/AddMoreTeamsButton';
 import {CREATETEAMSSCREEN} from '../../constants/screens';
 import EmptyList from '../../components/EmptyList/EmptyList';
+import {getPokemons} from '../../apis/Pokedex';
 
 const Teams = ({navigation, route}) => {
   const [teams, setTeams] = useState();
+  const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
     const userID = auth().currentUser.uid;
     getTeams(userID, route.params.name, setTeams);
+    getPokemons(route.params.name, setPokemons);
   }, [route.params.name]);
 
   return (
@@ -28,15 +31,32 @@ const Teams = ({navigation, route}) => {
       <FlatList
         contentContainerStyle={styles.listContainer}
         data={teams}
+        keyExtractor={(item, index) => item.name + index}
         ListEmptyComponent={<EmptyList text="teams" />}
-        renderItem={({item, index}) => (
-          <TeamItem name={item.name} key={index} />
+        renderItem={({item}) => (
+          <TeamItem
+            name={item.name}
+            onEdit={() =>
+              navigation.navigate(CREATETEAMSSCREEN, {
+                title: item.name,
+                teamMenbers: item.pokemons,
+                region: route.params.name,
+                pokemons: pokemons,
+              })
+            }
+            onDelete={() => {
+              removeTeamFromFirebase(route.params.name, item.name);
+            }}
+          />
         )}
       />
 
       <AddMoreTeamsButton
         onPress={() =>
-          navigation.navigate(CREATETEAMSSCREEN, {region: route.params.name})
+          navigation.navigate(CREATETEAMSSCREEN, {
+            region: route.params.name,
+            pokemons: pokemons,
+          })
         }
       />
     </View>

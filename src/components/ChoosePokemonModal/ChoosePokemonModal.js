@@ -34,7 +34,7 @@ const ChoosePokemonModal = ({
           data={filteredPokemons}
           renderItem={({item, index}) => (
             <Button
-              key={index + item.pokemon_species.name}
+              key={index}
               text={item.pokemon_species.name}
               onPress={() => {
                 addPokemonToTeam(item.pokemon_species);
