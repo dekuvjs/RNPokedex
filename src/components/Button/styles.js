@@ -7,11 +7,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     borderRadius: 6,
-    backgroundColor: colors.mainColor,
+    backgroundColor: colors.white,
     elevation: 3,
   },
   buttonText: {
-    color: colors.white,
+    color: colors.mainColor,
     fontFamily: 'Roboto-Bold',
     fontSize: 16,
   },

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInput} from 'react-native';
+import {Text, TextInput} from 'react-native';
 import colors from '../../constants/colors';
 import styles from './styles';
 
@@ -11,13 +11,14 @@ const Input = ({placeholder, callback}) => {
     setText(value);
   };
   return (
-    <TextInput
-      placeholder={'Login'}
-      onChangeText={onChangeText}
-      placeholderTextColor={colors.white}
-      value={text}
-      style={styles.input}
-    />
+    <>
+      <Text style={styles.text}>{placeholder}</Text>
+      <TextInput
+        onChangeText={onChangeText}
+        value={text}
+        style={styles.input}
+      />
+    </>
   );
 };
 

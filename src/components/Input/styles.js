@@ -4,14 +4,19 @@ import colors from '../../constants/colors';
 export default StyleSheet.create({
   input: {
     height: 40,
-    marginTop: 30,
-    borderWidth: 1,
     padding: 10,
     borderRadius: 6,
-    borderColor: colors.mainColor,
-    backgroundColor: colors.mainColor,
+    backgroundColor: colors.white,
     elevation: 3,
+    color: '#000000',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 15,
+    marginBottom: 20,
+  },
+  text: {
+    marginTop: 30,
     color: colors.white,
-    fontFamily: 'Roboto-Refular',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 15,
   },
 });

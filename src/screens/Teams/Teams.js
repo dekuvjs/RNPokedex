@@ -33,7 +33,9 @@ const Teams = ({navigation, route}) => {
       />
 
       <AddMoreTeamsButton
-        onPress={() => navigation.navigate(CREATETEAMSSCREEN)}
+        onPress={() =>
+          navigation.navigate(CREATETEAMSSCREEN, {region: route.params.name})
+        }
       />
     </View>
   );

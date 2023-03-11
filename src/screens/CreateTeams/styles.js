@@ -19,5 +19,8 @@ export default StyleSheet.create({
     fontSize: 20,
   },
 
-  columnContent: {justifyContent: 'space-between'},
+  form: {
+    backgroundColor: colors.mainColor,
+    padding: 12,
+  },
 });
