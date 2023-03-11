@@ -9,9 +9,10 @@ import withPokemonBackground from '../../HOC/withPokemonBackground';
 import styles from './styles';
 import AddMoreTeamsButton from '../../components/AddMoreTeamsButton/AddMoreTeamsButton';
 import {CREATETEAMSSCREEN} from '../../constants/screens';
+import EmptyList from '../../components/EmptyList/EmptyList';
 
 const Teams = ({navigation, route}) => {
-  const [teams, setTeams] = useState([]);
+  const [teams, setTeams] = useState();
 
   useEffect(() => {
     const userID = auth().currentUser.uid;
@@ -27,6 +28,7 @@ const Teams = ({navigation, route}) => {
       <FlatList
         contentContainerStyle={styles.listContainer}
         data={teams}
+        ListEmptyComponent={<EmptyList text="teams" />}
         renderItem={({item, index}) => <TeamItem item={item} key={index} />}
       />
 
