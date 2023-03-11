@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import {FlatList, Modal, Text, TextInput, View} from 'react-native';
 import Button from '../Button/Button';
+import Header from '../Header/Header';
 import Input from '../Input/Input';
 import styles from './styles';
 
@@ -25,6 +26,7 @@ const ChoosePokemonModal = ({
       visible={visible}
       onRequestClose={() => setVisible(false)}>
       <View style={styles.content}>
+        <Header goBack={() => setVisible(false)} text="Choose your pokemon" />
         <Input
           placeholder="Search pokemon"
           onChangeText={value => setText(value)}
@@ -34,7 +36,6 @@ const ChoosePokemonModal = ({
           data={filteredPokemons}
           renderItem={({item, index}) => (
             <Button
-              key={index}
               text={item.pokemon_species.name}
               onPress={() => {
                 addPokemonToTeam(item.pokemon_species);
@@ -43,7 +44,7 @@ const ChoosePokemonModal = ({
               }}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item, index) => item.pokemon_species.name + index}
         />
       </View>
     </Modal>

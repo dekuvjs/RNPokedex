@@ -19,9 +19,13 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
   },
   button: {
-    marginRight: 10,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 40,
+    marginRight: 5,
   },
 });

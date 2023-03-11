@@ -22,6 +22,15 @@ const Teams = ({navigation, route}) => {
     getPokemons(route.params.name, setPokemons);
   }, [route.params.name]);
 
+  const navigateToTeamsDetails = team => {
+    navigation.navigate(CREATETEAMSSCREEN, {
+      title: team.name,
+      teamMenbers: team.pokemons,
+      region: route.params.name,
+      pokemons: pokemons,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Header
@@ -36,14 +45,8 @@ const Teams = ({navigation, route}) => {
         renderItem={({item}) => (
           <TeamItem
             name={item.name}
-            onEdit={() =>
-              navigation.navigate(CREATETEAMSSCREEN, {
-                title: item.name,
-                teamMenbers: item.pokemons,
-                region: route.params.name,
-                pokemons: pokemons,
-              })
-            }
+            onEdit={() => navigateToTeamsDetails(item)}
+            onPress={() => navigateToTeamsDetails(item)}
             onDelete={() => {
               removeTeamFromFirebase(route.params.name, item.name);
             }}
