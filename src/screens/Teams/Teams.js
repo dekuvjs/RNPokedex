@@ -29,7 +29,9 @@ const Teams = ({navigation, route}) => {
         contentContainerStyle={styles.listContainer}
         data={teams}
         ListEmptyComponent={<EmptyList text="teams" />}
-        renderItem={({item, index}) => <TeamItem item={item} key={index} />}
+        renderItem={({item, index}) => (
+          <TeamItem name={item.name} key={index} />
+        )}
       />
 
       <AddMoreTeamsButton

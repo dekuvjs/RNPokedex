@@ -18,4 +18,19 @@ export default StyleSheet.create({
     fontFamily: 'Roboto-BoldItalic',
     fontSize: 20,
   },
+  saveButton: {
+    position: 'absolute',
+    backgroundColor: colors.white,
+    borderRadius: 6,
+    right: 10,
+    elevation: 10,
+  },
+  headerSaveText: {
+    marginRight: 20,
+    marginLeft: 20,
+    color: colors.mainColor,
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    elevation: 6,
+  },
 });
