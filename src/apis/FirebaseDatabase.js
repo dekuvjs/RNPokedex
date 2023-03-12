@@ -2,6 +2,7 @@ import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
 import {POKEMONS, REGIONS, TEAMS} from '../constants/api';
+import {reportError} from '../helpers/Crashlytics';
 
 const pokedex = database();
 
@@ -14,7 +15,7 @@ export const storeRegionsToFirebase = regions => {
   pokedex.ref(REGIONS).set(regions);
 };
 
-export const getTeams = (userID, region, onSuccess, onError) => {
+export const getTeams = (userID, region, onSuccess) => {
   pokedex.ref(`${TEAMS}/${region}/${userID}`).on(
     'value',
     snapshot => {
@@ -25,7 +26,7 @@ export const getTeams = (userID, region, onSuccess, onError) => {
         onSuccess([]);
       }
     },
-    onError,
+    reportError,
   );
 };
 
@@ -38,25 +39,14 @@ export const storePokemonsToFirebase = (region, pokemons) => {
   pokedex.ref(`${region}/${POKEMONS}`).set(pokemons);
 };
 
-export const storeTeamToFirebase = (
-  region,
-  pokemons,
-  teamName,
-  onSuccess,
-  onError,
-) => {
+export const storeTeamToFirebase = (region, pokemons, teamName, onSuccess) => {
   pokedex
     .ref(`${TEAMS}/${region}/${auth().currentUser.uid}/${teamName}`)
     .set({name: teamName, pokemons})
     .then(() => onSuccess());
 };
 
-export const removeTeamFromFirebase = (
-  region,
-  teamName,
-  onSuccess,
-  onError,
-) => {
+export const removeTeamFromFirebase = (region, teamName) => {
   pokedex
     .ref(`${TEAMS}/${region}/${auth().currentUser.uid}/${teamName}`)
     .remove();
