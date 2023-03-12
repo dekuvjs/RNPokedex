@@ -42,3 +42,12 @@ export const getPokemons = async (region, onSuccess, onError) => {
     onSuccess(pokemons);
   }
 };
+
+export const getPokemon = (name, onSuccess, onError) => {
+  axios
+    .get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    .then(res => {
+      onSuccess(res.data);
+    })
+    .catch(onError);
+};

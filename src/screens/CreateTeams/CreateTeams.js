@@ -9,6 +9,7 @@ import ChoosePokemonModal from '../../components/ChoosePokemonModal/ChoosePokemo
 import EmptyList from '../../components/EmptyList/EmptyList';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
+import PokemonDetails from '../../components/PokemonDetails/PokemonDetails';
 import TeamItem from '../../components/TeamItem/TeamItem';
 import {INSUFFICIENTPOKEMONS, TOOMANYPOKEMONS} from '../../constants/strings';
 import withPokemonBackground from '../../HOC/withPokemonBackground';
@@ -19,7 +20,10 @@ const CreateTeams = ({navigation, route}) => {
   const [pokemonTeamMembers, setpokemonTeamMembers] = useState(
     route.params.teamMenbers ?? [],
   );
+  const [selectedPokemon, setSelectedPokemon] = useState('');
+
   const [modalVisible, setModalVisible] = useState(false);
+  const [showPokemonDetail, setShowPokemonDetail] = useState(false);
 
   const onDeletePokemon = index => {
     const pokemonList = [...pokemonTeamMembers];
@@ -81,11 +85,21 @@ const CreateTeams = ({navigation, route}) => {
               key={index}
               name={item.name}
               onDelete={() => onDeletePokemon(index)}
+              onPress={() => {
+                setSelectedPokemon(item.name);
+                setShowPokemonDetail(true);
+              }}
             />
           )}
           ListEmptyComponent={<EmptyList text={'pokemons'} />}
         />
       </View>
+
+      <PokemonDetails
+        visible={showPokemonDetail}
+        setVisible={setShowPokemonDetail}
+        name={selectedPokemon}
+      />
 
       <ChoosePokemonModal
         visible={modalVisible}

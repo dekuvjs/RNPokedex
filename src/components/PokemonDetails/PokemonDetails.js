@@ -1,23 +1,46 @@
-import React, {useState} from 'react';
-import {View, TextInput, FlatList, Image, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Image, Text, Modal} from 'react-native';
+import {getPokemon} from '../../apis/Pokedex';
+import Header from '../Header/Header';
+import styles from './styles';
 
-const PokemonCard = () => {
+const PokemonDetails = ({visible, setVisible, name}) => {
   const [pokemonData, setPokemonData] = useState({});
+
+  useEffect(() => {
+    if (name) {
+      getPokemon(name, setPokemonData);
+    }
+  }, [name]);
   return (
-    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-      <Image
-        source={{uri: pokemonData.image}}
-        style={{width: '40%', aspectRatio: 1}}
-      />
-      <View style={{marginLeft: 8}}>
-        <Text>Name: {pokemonData.name}</Text>
-        <Text>Number: {pokemonData.number}</Text>
-        <Text>Type: {pokemonData.type}</Text>
-        <Text>Pokedex: {pokemonData.pokedex}</Text>
-        <Text>Description: {pokemonData.description}</Text>
+    <Modal
+      style={styles.container}
+      animationType="slide"
+      visible={visible}
+      onRequestClose={() => setVisible(false)}>
+      <View style={styles.content}>
+        <Header goBack={() => setVisible(false)} text="Pokemon Details" />
+        <View style={styles.imageContainer}>
+          {pokemonData?.sprites?.front_default && (
+            <Image
+              style={styles.image}
+              resizeMode="cover"
+              defaultSource={require('../../../assets/images/NoImage.png')}
+              source={{uri: pokemonData?.sprites?.front_default}}
+            />
+          )}
+        </View>
+        <View>
+          <Text style={styles.text}>Name: {pokemonData.name}</Text>
+          <Text style={styles.text}>Number: {pokemonData.id}</Text>
+          <Text style={styles.text}>
+            Type:{' '}
+            {pokemonData.types?.map(type => type.type.name + ' ').join(',')}
+          </Text>
+        </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 
-export default PokemonCard;
+export default PokemonDetails;

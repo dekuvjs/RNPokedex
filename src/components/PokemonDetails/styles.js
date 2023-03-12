@@ -2,16 +2,33 @@ import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
 
 export default StyleSheet.create({
-  input: {
-    height: 40,
-    marginTop: 30,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 6,
-    borderColor: colors.mainColor,
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    padding: 12,
     backgroundColor: colors.mainColor,
-    elevation: 3,
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderRadius: 6,
+  },
+  image: {height: 200, width: 200},
+  icon: {
     color: colors.white,
-    fontFamily: 'Roboto-Refular',
+    fontSize: 50,
+  },
+  text: {
+    marginTop: 10,
+    paddingLeft: 10,
+    height: 30,
+    borderRadius: 6,
+    backgroundColor: colors.white,
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    color: colors.mainColor,
   },
 });
