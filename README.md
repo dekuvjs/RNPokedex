@@ -17,7 +17,6 @@ you can remove that team, clicking on the trash icon, or edit  it cliking on the
 
 
 ### TO BUILD THE PROJECT
-you can download the apk file instead of building the project.( file located inside apk/appRelease.apk
 
 ```
 
