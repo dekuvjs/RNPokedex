@@ -11,15 +11,20 @@ import AddMoreTeamsButton from '../../components/AddMoreTeamsButton/AddMoreTeams
 import {CREATETEAMSSCREEN} from '../../constants/screens';
 import EmptyList from '../../components/EmptyList/EmptyList';
 import {getPokemons} from '../../apis/Pokedex';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 const Teams = ({navigation, route}) => {
   const [teams, setTeams] = useState();
   const [pokemons, setPokemons] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     const userID = auth().currentUser.uid;
     getTeams(userID, route.params.name, setTeams);
-    getPokemons(route.params.name, setPokemons);
+    getPokemons(route.params.name, value => {
+      setPokemons(value);
+      setIsloading(false);
+    });
   }, [route.params.name]);
 
   const navigateToTeamsDetails = team => {
@@ -53,6 +58,7 @@ const Teams = ({navigation, route}) => {
           />
         )}
       />
+      <LoadingModal visible={isLoading} />
 
       <AddMoreTeamsButton
         onPress={() =>
